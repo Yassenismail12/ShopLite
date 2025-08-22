@@ -1,0 +1,168 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Theme Variables ===== */
+:root {
+  --color-main: #1EA961;
+  --color-accent: #3C73D8;
+  --color-black: #000000;
+  --color-bg: #F5F5F5;
+  --color-header-bg: #ffffff;
+  --color-header-bg-dark: #111111;
+  --color-text: #000000;
+  --color-text-dark: #F5F5F5;
+  --transition: 0.3s ease;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: background var(--transition), color var(--transition);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ===== Dark Theme ===== */
+body.dark {
+  background: var(--color-black);
+  color: var(--color-text-dark);
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  background: var(--color-header-bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  transition: background var(--transition), border var(--transition);
+}
+body.dark .header {
+  background: var(--color-header-bg-dark);
+  border-color: #333;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-main);
+}
+
+/* ===== Navigation ===== */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color var(--transition);
+  color: var(--color-main); /* Light mode = main color */
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-main);
+}
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-main);
+  border-radius: 2px;
+}
+
+/* Dark mode nav */
+body.dark .nav-link {
+  color: var(--color-accent); /* Dark mode = accent color */
+}
+body.dark .nav-link:hover,
+body.dark .nav-link.active {
+  color: var(--color-accent);
+}
+body.dark .nav-link.active::after {
+  background: var(--color-accent);
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform var(--transition);
+  color: inherit;
+}
+.theme-toggle:hover {
+  transform: rotate(15deg);
+}
+
+/* ===== Pages ===== */
+.page {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  max-width: 800px;
+  margin: 4rem auto;
+  text-align: center;
+  padding: 0 1rem;
+}
+.page.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Typography ===== */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  color: inherit;
+}
+/* Smooth page transition */
+.page {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.page.active {
+  display: block;
+}
+.page.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Theme toggle button animation */
+.theme-toggle {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+}
+.theme-toggle:hover {
+  transform: rotate(20deg) scale(1.1);
+}
